@@ -44,12 +44,12 @@
         </javaClientGenerator>
 
 
-        <table schema="mybatis" tableName="db_item" domainObjectName="Item">
+        <!--    <table schema="mybatis" tableName="db_item" domainObjectName="Item">
             <property name="constructorBased" value="true" />
             <property name="useActualColumnNames" value="false" />
             <property name="ignoreQualifiersAtRuntime" value="true" />
         </table>
-         <table schema="mybatis" tableName="db_user" domainObjectName="User">
+      <table schema="mybatis" tableName="db_user" domainObjectName="User">
             <property name="constructorBased" value="true" />
             <property name="useActualColumnNames" value="false" />
             <property name="ignoreQualifiersAtRuntime" value="true" />
@@ -58,6 +58,6 @@
             <property name="constructorBased" value="true" />
             <property name="useActualColumnNames" value="false" />
             <property name="ignoreQualifiersAtRuntime" value="true" />
-        </table>
+        </table> -->
     </context>
 </generatorConfiguration>

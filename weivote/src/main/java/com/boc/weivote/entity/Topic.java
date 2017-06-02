@@ -3,21 +3,24 @@ package com.boc.weivote.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Topic implements Serializable {
+	
     private Integer id;
-
+    
     private String topic;
-
+    @JsonIgnore
     private Byte status;
 
     private Byte requeired;
 
     private Byte maxChecks;
-
+    @JsonIgnore
     private Date createTime;
-
+    @JsonIgnore
     private Date updateTime;
-
+    @JsonIgnore
     private String createBy;
 
     private static final long serialVersionUID = 1L;

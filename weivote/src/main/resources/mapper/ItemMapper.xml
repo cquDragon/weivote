@@ -5,6 +5,7 @@
     <constructor>
       <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
       <arg column="topic_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sequence" javaType="java.lang.Byte" jdbcType="TINYINT" />
       <arg column="item_content" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="vote_user_ids" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, topic_id, item_content, vote_user_ids
+    id, topic_id, sequence, item_content, vote_user_ids
   </sql>
   <select id="selectByExample" parameterType="com.boc.weivote.entity.ItemExample" resultMap="BaseResultMap">
     select
@@ -101,10 +102,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.boc.weivote.entity.Item">
-    insert into db_item (id, topic_id, item_content, 
-      vote_user_ids)
-    values (#{id,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{itemContent,jdbcType=VARCHAR}, 
-      #{voteUserIds,jdbcType=VARCHAR})
+    insert into db_item (id, topic_id, sequence, 
+      item_content, vote_user_ids)
+    values (#{id,jdbcType=INTEGER}, #{topicId,jdbcType=INTEGER}, #{sequence,jdbcType=TINYINT}, 
+      #{itemContent,jdbcType=VARCHAR}, #{voteUserIds,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.boc.weivote.entity.Item">
     insert into db_item
@@ -114,6 +115,9 @@
       </if>
       <if test="topicId != null">
         topic_id,
+      </if>
+      <if test="sequence != null">
+        sequence,
       </if>
       <if test="itemContent != null">
         item_content,
@@ -128,6 +132,9 @@
       </if>
       <if test="topicId != null">
         #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="sequence != null">
+        #{sequence,jdbcType=TINYINT},
       </if>
       <if test="itemContent != null">
         #{itemContent,jdbcType=VARCHAR},
@@ -152,6 +159,9 @@
       <if test="record.topicId != null">
         topic_id = #{record.topicId,jdbcType=INTEGER},
       </if>
+      <if test="record.sequence != null">
+        sequence = #{record.sequence,jdbcType=TINYINT},
+      </if>
       <if test="record.itemContent != null">
         item_content = #{record.itemContent,jdbcType=VARCHAR},
       </if>
@@ -167,6 +177,7 @@
     update db_item
     set id = #{record.id,jdbcType=INTEGER},
       topic_id = #{record.topicId,jdbcType=INTEGER},
+      sequence = #{record.sequence,jdbcType=TINYINT},
       item_content = #{record.itemContent,jdbcType=VARCHAR},
       vote_user_ids = #{record.voteUserIds,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -179,6 +190,9 @@
       <if test="topicId != null">
         topic_id = #{topicId,jdbcType=INTEGER},
       </if>
+      <if test="sequence != null">
+        sequence = #{sequence,jdbcType=TINYINT},
+      </if>
       <if test="itemContent != null">
         item_content = #{itemContent,jdbcType=VARCHAR},
       </if>
@@ -188,9 +202,29 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+   <update id="updateVoteUsers" parameterType="com.boc.weivote.entity.Item">
+    update db_item
+    <set>
+      <if test="topicId != null">
+        topic_id = #{topicId,jdbcType=INTEGER},
+      </if>
+      <if test="sequence != null">
+        sequence = #{sequence,jdbcType=TINYINT},
+      </if>
+      <if test="itemContent != null">
+        item_content = #{itemContent,jdbcType=VARCHAR},
+      </if>
+      <if test="voteUserIds != null">
+        vote_user_ids = concat(vote_user_ids,#{voteUserIds,jdbcType=VARCHAR}),
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.boc.weivote.entity.Item">
     update db_item
     set topic_id = #{topicId,jdbcType=INTEGER},
+      sequence = #{sequence,jdbcType=TINYINT},
       item_content = #{itemContent,jdbcType=VARCHAR},
       vote_user_ids = #{voteUserIds,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}

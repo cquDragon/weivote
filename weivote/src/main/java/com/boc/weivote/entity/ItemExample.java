@@ -224,6 +224,66 @@ public class ItemExample {
             return (Criteria) this;
         }
 
+        public Criteria andSequenceIsNull() {
+            addCriterion("sequence is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceIsNotNull() {
+            addCriterion("sequence is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceEqualTo(Byte value) {
+            addCriterion("sequence =", value, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNotEqualTo(Byte value) {
+            addCriterion("sequence <>", value, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceGreaterThan(Byte value) {
+            addCriterion("sequence >", value, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceGreaterThanOrEqualTo(Byte value) {
+            addCriterion("sequence >=", value, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceLessThan(Byte value) {
+            addCriterion("sequence <", value, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceLessThanOrEqualTo(Byte value) {
+            addCriterion("sequence <=", value, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceIn(List<Byte> values) {
+            addCriterion("sequence in", values, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNotIn(List<Byte> values) {
+            addCriterion("sequence not in", values, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceBetween(Byte value1, Byte value2) {
+            addCriterion("sequence between", value1, value2, "sequence");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNotBetween(Byte value1, Byte value2) {
+            addCriterion("sequence not between", value1, value2, "sequence");
+            return (Criteria) this;
+        }
+
         public Criteria andItemContentIsNull() {
             addCriterion("item_content is null");
             return (Criteria) this;
